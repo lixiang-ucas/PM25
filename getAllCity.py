@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jan 26 14:28:14 2016
+Created on Tue Jan 26 22:55:30 2016
 
 @author: lixiang
 """
@@ -98,7 +98,6 @@ def getCurrentHour():
                 else:
                     file_s.write(temp+'\t')
             file_s.write('\n')
-        time.sleep(sleep_time) 
     file_c.close()
     file_s.close()
 
