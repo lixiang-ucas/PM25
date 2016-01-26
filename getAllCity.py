@@ -14,7 +14,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
-sleep_time=1
+sleep_time=30
 
 def getUrlRespHtml(url):
     heads = {'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
@@ -62,6 +62,8 @@ def getCurrentHour():
 #    city='tianjin'
     for city in cities:
         ind=cities.index(city)
+        if ind%50==0:
+            time.sleep(sleep_time)
         site ='http://pm25.in/' + city + '.html'  
         print str(ind)+' '+site
     #    html = urllib2.urlopen(site)  
