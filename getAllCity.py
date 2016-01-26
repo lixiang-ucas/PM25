@@ -54,8 +54,8 @@ def getCities():
     
 def getCurrentHour():
     socket.setdefaulttimeout(60) # 60 秒钟后超时
-    file_c = open('city.txt','w')
-    file_s = open('site.txt','w')
+    file_c = open('city.txt','a')
+    file_s = open('site.txt','a')
 #    cities=['beijing','tianjin','shanghai']
     cities=getCities()
     print 'city count is：'+str(len(cities))
