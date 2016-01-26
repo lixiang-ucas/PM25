@@ -1,6 +1,8 @@
 # PM25
 PM2.5 data download
 
+从pm25.in网站下载全国各个城市、各个站点逐小时空气质量数据
+
 使用Urllib2和BeautifulSoup库进行数据抓取
 getUrlRespHtml是下载函数，设置了一些HTTP头
 getCities获取城市列表
