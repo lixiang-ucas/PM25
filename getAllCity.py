@@ -103,5 +103,8 @@ def getCurrentHour():
 
 if __name__ == '__main__': 
     while True:
+        t1=time.time()
         getCurrentHour()
-        time.sleep(3600)
+        t2=time.time()
+        print '单次下载勇士%s s' % (t2-t1)
+        time.sleep(3600-t2+t1)

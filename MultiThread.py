@@ -13,13 +13,15 @@ import threading
 from Queue import Queue
 import sys
 reload(sys)
-sys.setdefaultencoding( "utf-8" )
+sys.setdefaultencoding("utf-8")
 
 sleep_time=60
 socket.setdefaulttimeout(60) # 60 秒钟后超时
 #q是任务队列    
 q = Queue()
 lock = threading.Lock()
+requireCount=0
+numT=5
 
 class AQISpider:
     def __init__(self):
@@ -63,7 +65,7 @@ class AQISpider:
         
     def getCurrentHour(self):
         print 'city count is：'+str(len(self.cities))
-        multi=MultiThread(10,len(self.cities))
+        multi=MultiThread(numT,len(self.cities))
         multi._do(self.working)
         self.file_c.close()
         self.file_s.close()
@@ -109,6 +111,17 @@ class AQISpider:
         self._save(self.file_s,data_s)
         self.file_c.flush()
         self.file_s.flush()
+        ##################
+        #####没执行5次进入休眠
+        ###################
+        global requireCount   
+        if lock.acquire():
+            requireCount+=1
+            print 'requireCount---'+str(requireCount)
+            if requireCount%50==0:
+                print 'sleep %s s' % sleep_time
+                time.sleep(sleep_time)
+            lock.release()
             
     def _save(self, file ,data):
         file.write(str(data)+'\n')
@@ -137,4 +150,5 @@ if __name__ == '__main__':
         spider = AQISpider()
         spider.getCurrentHour()
         t2=time.time()
+        print '单次下载勇士%s s' % (t2-t1)
         time.sleep(3600-t2+t1)
