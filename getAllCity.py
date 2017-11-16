@@ -106,5 +106,5 @@ if __name__ == '__main__':
         t1=time.time()
         getCurrentHour()
         t2=time.time()
-        print '单次下载勇士%s s' % (t2-t1)
+        print '单次下载用时%s s' % (t2-t1)
         time.sleep(3600-t2+t1)
